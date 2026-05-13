@@ -121,15 +121,18 @@ document.querySelectorAll('#stock .btn').forEach(btn => {
     updateSubmit();
   };
 });
-
 staffInput.addEventListener('input', updateSubmit);
-  submitBtn.onclick = () => {
-  const staff = staffInput.value;
 
 submitBtn.onclick = () => {
   const staff = staffInput.value;
 
   if ((staff.length === 5 || staff.length === 6) && qty && stock) {
+    alert("Submitted ✅");
+  }
+};
+
+  if ((staff.length === 5 || staff.length === 6) && qty && stock) {
     document.body.innerHTML = "<h1 style='text-align:center;margin-top:50px;'>Submitted ✅</h1>";
   }
 };
+</script>
