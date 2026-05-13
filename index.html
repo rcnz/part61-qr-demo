@@ -123,6 +123,13 @@ document.querySelectorAll('#stock .btn').forEach(btn => {
 });
 
 staffInput.addEventListener('input', updateSubmit);
+  submitBtn.onclick = () => {
+  const staff = staffInput.value;
+
+  if ((staff.length === 5 || staff.length === 6) && qty && stock) {
+    alert("Submitted ✅");
+  }
+};
 </script>
 
 </body>
