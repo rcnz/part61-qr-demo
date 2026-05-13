@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sticker Collection</title>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: #f5f5f5;
+  }
+
+  .container {
+    max-width: 400px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  input {
+    width: 100%;
+    padding: 15px;
+    font-size: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .grid {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .btn {
+    flex: 1;
+    padding: 15px;
+    font-size: 18px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+  }
+
+  .btn.selected {
+    border-color: black;
+    font-weight: bold;
+  }
+
+  .submit {
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    background: #ccc;
+    color: white;
+    border: none;
+    border-radius: 8px;
+  }
+
+  .submit.enabled {
+    background: black;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <input id="staff" inputmode="numeric" pattern="[0-9]*" placeholder="Staff Number">
+
+  <div class="grid" id="qty">
+    <button class="btn">1</button>
+    <button class="btn">2</button>
+    <button class="btn">3</button>
+  </div>
+
+  <div class="grid" id="stock">
+    <button class="btn">More than 10</button>
+    <button class="btn">Fewer than 10</button>
+  </div>
+
+  <button id="submit" class="submit">SUBMIT</button>
+
+</div>
+
+<script>
+let qty = null;
+let stock = null;
+
+const staffInput = document.getElementById('staff');
+const submitBtn = document.getElementById('submit');
+
+function updateSubmit() {
+  const staff = staffInput.value;
+  if ((staff.length === 5 || staff.length === 6) && qty && stock) {
+    submitBtn.classList.add('enabled');
+  } else {
+    submitBtn.classList.remove('enabled');
+  }
+}
+
+document.querySelectorAll('#qty .btn').forEach(btn => {
+  btn.onclick = () => {
+    document.querySelectorAll('#qty .btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    qty = btn.innerText;
+    updateSubmit();
+  };
+});
+
+document.querySelectorAll('#stock .btn').forEach(btn => {
+  btn.onclick = () => {
+    document.querySelectorAll('#stock .btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    stock = btn.innerText;
+    updateSubmit();
+  };
+});
+
+staffInput.addEventListener('input', updateSubmit);
+</script>
+
+</body>
+</html>
