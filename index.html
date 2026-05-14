@@ -121,6 +121,7 @@ document.querySelectorAll('#stock .btn').forEach(btn => {
     updateSubmit();
   };
 });
+
 staffInput.addEventListener('input', updateSubmit);
 
 submitBtn.onclick = () => {
@@ -128,11 +129,6 @@ submitBtn.onclick = () => {
 
   if ((staff.length === 5 || staff.length === 6) && qty && stock) {
     alert("Submitted ✅");
-  }
-};
-
-  if ((staff.length === 5 || staff.length === 6) && qty && stock) {
-
   }
 };
 </script>
